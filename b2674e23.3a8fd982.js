@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[255],{380:function(a){a.exports=JSON.parse('{"allTagsPath":"/blog/tags","slug":"react-native-paper","name":"react-native-paper","count":1,"permalink":"/blog/tags/react-native-paper"}')}}]);
