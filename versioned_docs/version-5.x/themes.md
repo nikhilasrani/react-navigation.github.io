@@ -77,20 +77,20 @@ import { DefaultTheme, DarkTheme } from '@react-navigation/native';
 
 ## Using the operating system preferences
 
-At the time of writing, `react-native` does not currently support detecting the operating system color scheme preferences in the core ([you can follow this pull request](https://github.com/facebook/react-native/pull/26172)). Until it is part of core and you have updated to the version that includes it, you can use `react-native-appearance`.
+From React Native 0.62 onwards, `react-native` has an `Appearance` module which exposes information about the user's appearance preferences, such as their prefered color scheme (light or dark).
 
-You will need iOS 13 to actually be able to toggle dark mode through system settings.
+The color scheme preference will map to the user's Light or Dark theme preference on Android 10 (API level 29) devices and higher and on iOS 13 devices and higher.
 
-> Note: if you use the Expo managed workflow, this requires SDK 35+
+The useColorScheme React hook provides and subscribes to color scheme updates from the Appearance module.
 
-First, you need to install `react-native-appearance`. [Follow the instructions in the README](https://github.com/expo/react-native-appearance).
+> Note: if you use the Expo managed workflow, this requires SDK 38+
 
-Once you've installed it, set your root component up as follows:
+Once you've imported it, set your root component up as follows:
 
 <samp id="system-themes" />
 
 ```js
-import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+import { useColorScheme } from 'react-native';
 import {
   NavigationContainer,
   DefaultTheme,
@@ -101,11 +101,9 @@ export default () => {
   const scheme = useColorScheme();
 
   return (
-    <AppearanceProvider>
-      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-        {/* content */}
-      </NavigationContainer>
-    </AppearanceProvider>
+    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+      {/* content */}
+    </NavigationContainer>
   );
 };
 ```
